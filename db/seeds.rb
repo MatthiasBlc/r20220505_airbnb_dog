@@ -29,20 +29,22 @@ end
 end
 
 
-500.times do
+100.times do
   stroll_city = City.all.sample
   stroll = Stroll.create!(dogsitter: Dogsitter.where(city: stroll_city).sample, city: stroll_city)
 end
 
 
 170.times do
+  random_city = City.all.sample
   # random stroll dans random dog
-  random_dog1 = Dog.all.sample
-  random_stroll1 = Stroll.all.sample
+  random_dog1 = Dog.where(city: random_city).sample
+  random_stroll1 = Stroll.where(city: random_city).sample
   random_dog1.strolls << random_stroll1
   # random dog dans random stroll
-  random_stroll2 = Stroll.all.sample
-  random_dog2 = Dog.all.sample
+  random_city2 = City.all.sample
+  random_stroll2 = Stroll.where(city: random_city2).sample
+  random_dog2 = Dog.where(city: random_city2).sample
   random_stroll2.dogs << random_dog2
 end
 
